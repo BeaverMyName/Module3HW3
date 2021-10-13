@@ -9,21 +9,21 @@ namespace ObserverTemplate
 {
     public class Subject : ISubject
     {
-        private EventHandler _eventHandler;
+        public event EventHandler EventHandler;
 
         public void Attach(IObserver observer)
         {
-            _eventHandler += observer.Update;
+            EventHandler += observer.Update;
         }
 
         public void Detach(IObserver observer)
         {
-            _eventHandler -= observer.Update;
+            EventHandler -= observer.Update;
         }
 
         public void Notify()
         {
-            _eventHandler?.Invoke(this, new EventArgs());
+            EventHandler?.Invoke(this, new EventArgs());
         }
     }
 }
